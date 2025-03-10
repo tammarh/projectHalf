@@ -8,4 +8,27 @@ const getAllTodos = async (req,res)=>{
     res.json(todos)
 }
 
-module.exports = {getAllTodos}
+const getNotComplaited = async (req,res)=>{
+    const todosNotComplaited = await Todo.find(t=>!t.completed).lean()
+    if(!todosNotComplaited)
+        return res.status(401).message('not exssiting todos not complaited !!')
+
+    res.json(todosNotComplaited)
+}
+
+const getComplaited = async (req,res)=>{
+    const todosComplaited = await Todo.find(t=>t.completed).lean()
+    if(!todosComplaited)
+        return res.status(401).message('not exssiting todos complaited !!')
+
+    res.json(todosComplaited)
+}
+
+const createTodo = async (req,res) =>{
+    const {title,tags,completed} = req.body
+    if(!title)
+        return res.status(401).message('not found todo')
+
+    ///////// add code
+}
+module.exports = {getAllTodos , getComplaited , getNotComplaited}
