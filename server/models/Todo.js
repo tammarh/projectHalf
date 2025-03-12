@@ -5,8 +5,9 @@ const todoSchema = new mongoose.model({
         require:true
     },
     tags:{
-        //I need to add code
+        type:[String]
     },
+    /*type:String,*/
     completed:{
         type:Boolean,
         default:false
